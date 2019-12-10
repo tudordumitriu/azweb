@@ -17,7 +17,8 @@ import { makeSelectUsername, makeSelectSearchKey } from 'containers/HomePage/sel
 export function* getValues() {
     // Select username from store
     const searchKey = yield select(makeSelectSearchKey());
-    const requestURL = `http://localhost:59604/api/values?${searchKey}`;
+    const API = process.env.API;
+    const requestURL = `${API}api/values?${searchKey}`;
 
     try {
         // Call our request helper (see 'utils/request')
