@@ -10,7 +10,7 @@
     "author": "Dinesh Pandiyan",
     "scripts": {
         "prebuild": "npm run build:clean",
-        "build": "cross-env NODE_ENV=production API='http://52.188.182.43/' PORT=3002 webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
+        "build": "cross-env NODE_ENV=production API='http://51.144.187.182/' PORT=3002 webpack --config config/webpack.prod.babel.js --color -p --progress --hide-modules --display-optimization-bailout",
         "build:clean": "rimraf ./build",
         "clean": "npm run test:clean && npm run build:clean",
         "eslint:fix": "eslint -- . --ignore-path .gitignore --fix",
@@ -18,7 +18,7 @@
         "lint:eslint": "eslint --ignore-path .gitignore",
         "lint:js": "npm run lint:eslint -- . ",
         "start": "cross-env NODE_ENV=development API='http://localhost:30643/' PORT=3002 node server",
-        "start:prod": "cross-env NODE_ENV=production API='http://52.188.182.43/' PORT=3002 node server",
+        "start:prod": "cross-env NODE_ENV=production API='http://51.144.187.182/' PORT=3002 node server",
         "start:production": "npm run build && npm run start:prod",
         "pretest": "npm run test:clean && npm run lint",
         "test": "cross-env NODE_ENV=test jest --coverage",

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: azweb
-        image: tudordumitriu/azweb:v35 
+        image: tudordumitriu/azweb:v42
         imagePullPolicy: Always
         ports:
         - containerPort: 3002
@@ -29,6 +29,5 @@ spec:
   ports:
   - protocol: TCP
     port: 3002
-    targetPort: 3002
-    nodePort: 30666
+    targetPort: 3002    
   type: LoadBalancer
