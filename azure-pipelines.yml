@@ -9,6 +9,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  - group: AZWEB.SharedVariables
+
 steps:
 - task: Docker@2
   inputs:
