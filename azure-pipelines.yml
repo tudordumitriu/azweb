@@ -27,9 +27,15 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo $webbuildno
+      Write-Host $webbuildno
       
-
+# docker login --username tudordumitriu --password=e7426419-5fad-4beb-aedb-fad0df312bdf
+#       $Command = "docker build -t tudordumitriu/azweb:($(webbuildno))"
+#       write-output "Executing $Command"
+#       Invoke-Expression $Command      
+#       $Command = "docker push tudordumitriu/azweb:($(webbuildno))"
+#       write-output "Executing $Command"
+#       Invoke-Expression $Command
 # - task: Docker@2
 #   inputs:
 #     containerRegistry: 'Docker Hub'
