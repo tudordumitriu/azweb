@@ -13,15 +13,15 @@ variables:
   - group: SharedVariables  
 
 steps:
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + $(Build.BuildId)
-#       az extension add --name azure-devops
-#       echo $(System.AccessToken) | az devops login
-#       az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)       
-#       az pipelines variable-group variable update --id 1 --name webbuildno --value $(Build.BuildId)
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + $(Build.BuildId)
+      az extension add --name azure-devops
+      echo $(System.AccessToken) | az devops login
+      az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)       
+      az pipelines variable-group variable update --id 1 --name webbuildno --value $(Build.BuildId)
 
 - task: PowerShell@2
   inputs:
