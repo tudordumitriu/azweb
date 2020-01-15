@@ -13,28 +13,22 @@ variables:
   -group: SharedVariables
 
 steps:
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + $(Build.BuildId)
-      az extension add --name azure-devops
-      echo $(System.AccessToken) | az devops login
-      az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)       
-      az pipelines variable-group variable update --id 1 --name webbuildno --value $(Build.BuildId)
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + $(Build.BuildId)
+#       az extension add --name azure-devops
+#       echo $(System.AccessToken) | az devops login
+#       az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)       
+#       az pipelines variable-group variable update --id 1 --name webbuildno --value $(Build.BuildId)
 
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      echo $(webbuildno)
-      docker login --username tudordumitriu --password=e7426419-5fad-4beb-aedb-fad0df312bdf
-      $Command = "docker build -t tudordumitriu/azweb:($(webbuildno))"
-      write-output "Executing $Command"
-      Invoke-Expression $Command      
-      $Command = "docker push tudordumitriu/azweb:($(webbuildno))"
-      write-output "Executing $Command"
-      Invoke-Expression $Command
+      echo $webbuildno
+      
 
 # - task: Docker@2
 #   inputs:
