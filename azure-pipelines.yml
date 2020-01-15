@@ -13,17 +13,17 @@ variables:
   buildno: '100'
 
 steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'Docker Hub'
-    repository: 'tudordumitriu/azweb'
-    command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+# - task: Docker@2
+#   inputs:
+#     containerRegistry: 'Docker Hub'
+#     repository: 'tudordumitriu/azweb'
+#     command: 'buildAndPush'
+#     Dockerfile: '**/Dockerfile'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
     script: |
-      (Get-Content $(Build.BuildNumber)).replace('.', '') | Set-Content $(buildno)
+      $(Build.BuildNumber).replace('.', '') | Set-Content $(buildno)
       az extension add --name azure-devops
       echo $(System.AccessToken) | az devops login
       az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)
