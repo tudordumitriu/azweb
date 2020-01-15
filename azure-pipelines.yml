@@ -17,24 +17,16 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + ($(Build.BuildNumber).ToString()).replace('.', '')  
+      Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + ($(Build.BuildId).ToString()).replace('.', '')  
       az extension add --name azure-devops
       echo $(System.AccessToken) | az devops login
       az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)       
-      az pipelines variable-group variable update --id 1 --name webbuildno --value ($(Build.BuildNumber).ToString()).replace('.', '')
-# - task: Docker@2
-#   inputs:
-#     containerRegistry: 'Docker Hub'
-#     repository: 'tudordumitriu/azweb'
-#     command: 'buildAndPush'
-#     Dockerfile: '**/Dockerfile'
-#     tags: $(webbuildno)
+      az pipelines variable-group variable update --id 1 --name webbuildno --value ($(Build.BuilId).ToString()).replace('.', '')
 - task: Docker@2
   inputs:
     containerRegistry: 'Docker Hub'
     repository: 'tudordumitriu/azweb'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: '$webbuildno'
-
+#tags: '$webbuildno'
 #echo "##vso[task.setvariable variable=buildno]$(Build.BuildNumber).ToString().replace('.', '')"
