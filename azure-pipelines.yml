@@ -27,7 +27,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Write-Host "Webbuildno" + $(webbuildno)
+      Write-Host "Webbuildno" + '$(Build.BuildId)'
       
 # docker login --username tudordumitriu --password=e7426419-5fad-4beb-aedb-fad0df312bdf
 #       $Command = "docker build -t tudordumitriu/azweb:($(webbuildno))"
