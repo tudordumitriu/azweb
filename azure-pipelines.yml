@@ -28,6 +28,6 @@ steps:
     repository: 'tudordumitriu/azweb'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
-    tags: '$(webbuildno)'
+    tags: $(webbuildno)
 
 #echo "##vso[task.setvariable variable=buildno]$(Build.BuildNumber).ToString().replace('.', '')"
