@@ -27,7 +27,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      docker login --username tudordumitriu | e7426419-5fad-4beb-aedb-fad0df312bdf
+      docker login --username tudordumitriu --password=e7426419-5fad-4beb-aedb-fad0df312bdf
       $Command = "docker build -t tudordumitriu/azweb:$(webbuildno)."
       write-output "Executing $Command"
       Invoke-Expression $Command      
