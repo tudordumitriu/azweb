@@ -10,7 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  -group: SharedVariables
+  - group: SharedVariables  
 
 steps:
 # - task: PowerShell@2
