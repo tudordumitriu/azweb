@@ -78,10 +78,10 @@ module.exports = (options) => ({
       }
     }),
     new webpack.DefinePlugin({
-        'process.env': {
-          API: JSON.stringify(process.env.API)
-        }
-      })
+      'process.env': {
+        API: JSON.stringify(process.env.API)
+      }
+    })
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
