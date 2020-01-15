@@ -24,8 +24,8 @@ steps:
     targetType: 'inline'
     script: |
       $(buildno) = $(Build.BuildNumber).ToString().replace('.', '')
+      Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + '$(buildno)'  
       az extension add --name azure-devops
       echo $(System.AccessToken) | az devops login
-      az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)
-      Write-Host 'Before update:' + '$(System.TeamFoundationCollectionUri)'  + ':' + '$(buildno)'   
+      az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)       
       az pipelines variable-group variable update --id 1 --name webbuildno --value $(buildno)
