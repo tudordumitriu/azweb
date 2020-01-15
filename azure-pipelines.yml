@@ -31,7 +31,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      (Get-Content .\package.json).replace('{apiurl}', $(apiurl)) | Set-Content .\package.json
+      (Get-Content .\package.json).replace('{apiurl}', '$(apiurl)') | Set-Content .\package.json
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
