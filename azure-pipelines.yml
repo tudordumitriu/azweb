@@ -23,7 +23,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      $(Build.BuildNumber).replace('.', '') | Set-Content $(buildno)
+      $(Build.BuildNumber).ToString().replace('.', '') | Set-Content $(buildno)
       az extension add --name azure-devops
       echo $(System.AccessToken) | az devops login
       az devops configure -d organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject)
