@@ -31,6 +31,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      (Get-Content .\package.json).replace('{apiurl}', $(apiurl)) | Set-Content .\package.json
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
       Write-Host "Webbuildno" + $(webbuildno)
       docker login --username tudordumitriu --password=e7426419-5fad-4beb-aedb-fad0df312bdf
       $Command = "docker build -t tudordumitriu/azweb:" + $(webbuildno) + " ."
