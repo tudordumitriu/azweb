@@ -17,7 +17,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      echo "##vso[task.setvariable variable=webbuildno](($(Build.BuildNumber).ToString()).replace('.', ''))"
+      echo "##vso[task.setvariable variable=webbuildno]($(Build.BuildNumber).ToString()).replace('.', '')"
       Write-Host 'Releasing web:' + '$(System.TeamFoundationCollectionUri)'  + ':' + $(webbuildno)
       az extension add --name azure-devops
       echo $(System.AccessToken) | az devops login
@@ -30,7 +30,7 @@ steps:
     script: |
       Write-Host "Webbuildno" + $(webbuildno)
       docker login --username tudordumitriu --password=e7426419-5fad-4beb-aedb-fad0df312bdf
-      $Command = "docker build -t tudordumitriu/azweb:" + $(webbuildno)
+      $Command = "docker build -t tudordumitriu/azweb:" + $(webbuildno) + " ."
       write-output "Executing $Command"
       Invoke-Expression $Command      
       $Command = "docker push tudordumitriu/azweb:" + $(webbuildno)
