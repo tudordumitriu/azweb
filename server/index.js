@@ -7,13 +7,14 @@ const logger = require('./util//logger');
 const argv = require('./util/argv');
 const port = require('./util//port');
 const setup = require('./middlewares/frontendMiddleware');
+var ip = require("ip");
 
 const app = express();
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-// In production we need to pass these values in instead of relying on webpack
+//In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
@@ -24,10 +25,15 @@ const customHost = argv.host || process.env.HOST;
 const host = customHost || null; // Let http.Server use its default IPv6/4 host
 const prettyHost = customHost || 'localhost';
 
+// app.get('/', (req, res) => {
+//     res.send('Hello World! ' + ip.address())
+// })
+
 // Start your app.
 app.listen(port, host, (err) => {
-  if (err) {
-    return logger.error(err.message);
-  }
-  logger.appStarted(port, prettyHost);
+    if (err) {
+        return logger.error(err.message);
+    }
+    logger.appStarted(port, prettyHost);
 });
+
